@@ -15,8 +15,14 @@ jobs:
           node-version: 18.x
           
       - run: npm ci
-      - run: npm run build
+      - run: npm run deploy
+      - run: ls -la ./out
       
+      - name: Debug build output
+        run: |
+          echo "Build output contents:"
+          ls -R ./out || echo "No out directory"
+          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
